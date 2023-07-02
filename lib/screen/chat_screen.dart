@@ -18,13 +18,52 @@ class _ChatScreenState extends State<ChatScreen> {
   List data = [
     {
       "isonline": true,
-     
-      "name": "",
+      "name": "maitheen",
+      "message": "hi the  how are you in the main",
+      "time": "2:23",
+      "unreadmessage": "3",
+      "isreaded": false
+    },
+    {
+      "isonline": true,
+      "name": "kaviya",
+      "message": "hi the  how are you in the main",
+      "time": "4:12",
+      "unreadmessage": "3",
+      "isreaded": true
+    },
+    {
+      "isonline": false,
+      "name": "tamil",
+      "message": "tomarrow in thia ",
+      "time": "Yesterday",
+      "unreadmessage": "3",
+      "isreaded": false
+    },
+    {
+      "isonline": true,
+      "name": "mathu",
+      "message": "hoa ",
+      "time": "Yesterday",
+      "unreadmessage": "",
+      "isreaded": true
+    },
+    {
+      "isonline": true,
+      "name": "buvanesh",
+      "message": "hi the  ",
+      "time": "Yesterday",
+      "unreadmessage": "3",
+      "isreaded": false
+    },
+    {
+      "isonline": true,
+      "name": "kamesh",
       "message": "hi the  how are you in the main",
       "time": "Yesterday",
-      "unreadmessage": "3"
-      ,"isreaded":true
-    }
+      "unreadmessage": "",
+      "isreaded": false
+    },
   ];
   @override
   Widget build(BuildContext context) {
@@ -49,10 +88,11 @@ class _ChatScreenState extends State<ChatScreen> {
             height: 120,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 10,
+              itemCount: data.length,
               itemBuilder: (context, index) => Column(
                 children: [
-                  OnlineProfilePhoto(isonline: data[0]["isonline"]),
+                  OnlineProfilePhoto(
+                    isonline: data[index]["isonline"]),
                   const Text(
                     "Leslie",
                     style: TextStyle(
@@ -68,16 +108,14 @@ class _ChatScreenState extends State<ChatScreen> {
             height: MediaQuery.of(context).size.height - 150,
             child: ListView.builder(
                 scrollDirection: Axis.vertical,
-                itemCount: 10,
+                itemCount: data.length,
                 itemBuilder: (context, index) => MessageContainer(
-                    
-                      isonline: data[0]["isonline"],
-                      name: data[0]["name"],
-                      message: data[0]["message"],
-                     
-                      unreadmessage: data[0]["unreadmessage"],
-                      isreaded: data[0]["isreaded"],
-                      time:  data[0]["time"],
+                      isonline: data[index]["isonline"],
+                      name: data[index]["name"],
+                      message: data[index]["message"],
+                      unreadmessage: data[index]["unreadmessage"],
+                      isreaded: data[index]["isreaded"],
+                      time: data[index]["time"],
                     )),
           ),
           //

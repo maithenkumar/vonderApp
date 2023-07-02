@@ -10,14 +10,14 @@ class MessageContainer extends StatelessWidget {
       required this.name,
       required this.message,
       required this.unreadmessage,
-       required this.isreaded});
+      required this.isreaded});
 
   final bool isonline;
   final String name;
   final String message;
   final String time;
   final bool isreaded;
-  final String ?unreadmessage;
+  final String? unreadmessage;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,7 +29,6 @@ class MessageContainer extends StatelessWidget {
               isonline: isonline,
             ),
             Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
@@ -55,14 +54,16 @@ class MessageContainer extends StatelessWidget {
             ),
             Spacer(),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  time,
-                  style: TextStyle(
-                    color: Constants.orangecolor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
+                Center(
+                  child: Text(
+                    time,
+                    style: TextStyle(
+                      color: Constants.orangecolor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
+                    ),
                   ),
                 ),
                 isreaded == false
@@ -75,7 +76,7 @@ class MessageContainer extends StatelessWidget {
                             color: Constants.orangecolor),
                         child: Center(
                           child: Text(
-                            time,
+                            "${unreadmessage}",
                             style: const TextStyle(
                                 color: Constants.whitecolor,
                                 fontSize: 12,
@@ -83,22 +84,12 @@ class MessageContainer extends StatelessWidget {
                           ),
                         ),
                       )
-                    : Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        image: const DecorationImage(image: 
-                         AssetImage(
-                          "../assets/images/tick.png"
-                        ))
-
-                      ),
-                        
-                      )
+                    : Icon(Icons.done_all_outlined,color: Constants.redColor,)
+                    
+                
               ],
             ),
-        const     SizedBox(
+            const SizedBox(
               width: 15,
             )
           ],

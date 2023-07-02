@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screen/chat_screen.dart';
+import 'screen/new_cart_screen.dart';
 
 
 void main() {
@@ -27,7 +28,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white70),
       ),
      
-      home: ChatScreen()
+      home: NewCart()
     );
   }
 }
