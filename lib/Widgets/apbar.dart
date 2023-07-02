@@ -9,6 +9,8 @@ AppBar appbar(
     required Color bgColor,
     String acttext = "",
     bool fronticon = true,
+    
+    bool white = false,
     var iconsize=16,
     IconData icon =Icons.arrow_forward_ios_outlined,
     bool acticon = false}) {
@@ -45,16 +47,21 @@ AppBar appbar(
               top: 10,
             ),
             child: OutlinedButton(
+              
               onPressed: func,
               style: IconButton.styleFrom(
+                
                   minimumSize: const Size(30,  20),
-                  // maximumSize: const Size(20, 20),
+                  // maximumSize: const Size(20, 20)
+                  // ,
+                  
                   shape: RoundedRectangleBorder(
+                  
                       borderRadius: BorderRadius.circular(12))),
-              child: const Center(
+              child:  Center(
                 child: Icon(
                   Icons.arrow_back_ios,
-                  color: Constants.balckcolor,
+                  color:white==false? Constants.balckcolor:Constants.whitecolor,
                   size: 20,
                 ),
               ),

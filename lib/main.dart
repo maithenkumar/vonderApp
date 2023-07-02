@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
+import 'screen/chat_screen.dart';
 
-import 'ApiServices/api_services.dart';
-import 'screen/help_center.dart';
-
-import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +27,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white70),
       ),
      
-      home: HelperCenterPage()
+      home: ChatScreen()
     );
   }
 }

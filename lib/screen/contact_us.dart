@@ -3,9 +3,15 @@ import 'package:flutter/material.dart';
 import '../Costants/constants.dart';
 import '../Widgets/contact_container.dart';
 
-class ContactScreen extends StatelessWidget {
-  ContactScreen({super.key, required this.headText});
+class ContactScreen extends StatefulWidget {
+  const ContactScreen({super.key, required this.headText});
   final String headText;
+
+  @override
+  State<ContactScreen> createState() => _ContactScreenState();
+}
+
+class _ContactScreenState extends State<ContactScreen> {
   List data = [
     {"headText": "WhatsApp", "icon": Icons.wechat_sharp},
     {"headText": "Website", "icon": Icons.browse_gallery_outlined},
@@ -13,6 +19,7 @@ class ContactScreen extends StatelessWidget {
     {"headText": "Twitter", "icon": Icons.wb_twilight_outlined},
     {"headText": "Instagram", "icon": Icons.insert_page_break},
   ];
+
   @override
   Widget build(BuildContext context) {
     return Padding(
