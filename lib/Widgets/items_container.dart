@@ -3,13 +3,19 @@ import 'package:flutter/material.dart';
 import '../Costants/constants.dart';
 import 'button.dart';
 
-class ItemsContaner extends StatelessWidget {
+class ItemsContaner extends StatefulWidget {
   const ItemsContaner({super.key});
 
   @override
+  State<ItemsContaner> createState() => _ItemsContanerState();
+}
+
+class _ItemsContanerState extends State<ItemsContaner> {
+  int itemCount=1;
+  @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15), color: Constants.whitecolor),
       child: Row(
@@ -20,11 +26,11 @@ class ItemsContaner extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 3),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 3),
                   child: Text(
                     "Boliled Egg",
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Constants.balckcolor,
                         fontSize: 14,
                         fontWeight: FontWeight.w600),
@@ -37,27 +43,27 @@ class ItemsContaner extends StatelessWidget {
                   width: 3),
                   borderRadius: BorderRadius.circular(8)
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_drop_up,
                   color: Constants.brown,
                   size: 25,
                 ),
               ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
                   child: Text(
                     "4 on Boliled Egg with salt pepper ",
-                    style: const TextStyle(
+                    style: TextStyle(
                         color: Constants.greyColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
                   child: Text(
                     "\u{20B9}70.12",
-                    style: const TextStyle(
+                    style: TextStyle(
                         letterSpacing: 0.5,
                         color: Constants.balckcolor,
                         fontSize: 18,
@@ -67,14 +73,13 @@ class ItemsContaner extends StatelessWidget {
               ],
             ),
           ),
-         SizedBox(
-          height: 10,
-         ),
+        
+        const  Spacer(),
           Column(
             children: [
-           Container(
+           SizedBox(
             height: 100,
-            width: 150,
+            width: 120,
             child: Stack(
               children: [
                   Positioned(
@@ -84,7 +89,7 @@ class ItemsContaner extends StatelessWidget {
                                   width: 90,
                   
                                   decoration: BoxDecoration(
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                       color: Constants.greyColor,
                       blurRadius: 2,
@@ -95,7 +100,7 @@ class ItemsContaner extends StatelessWidget {
                                   width: 4,
                                 ),
                                 borderRadius: BorderRadius.circular(12),
-                                image: DecorationImage(
+                                image: const DecorationImage(
                                   image: AssetImage("../assets/images/image.png"),
                                   fit: BoxFit.fill,
                                 ),
@@ -115,20 +120,28 @@ class ItemsContaner extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ButtonSum(
-                        fun: () {},
+                        fun: () {
+                          setState(() {
+                            itemCount<=1?itemCount=1:itemCount--;
+                          });
+                        },
                         sum: "-",
                         color: Constants.redColor,
                         texColor: Constants.whitecolor,
                       ),
-                      Text(
-                        "2",
+                       Text(
+                        "$itemCount",
                         style: const TextStyle(
                             color: Constants.whitecolor,
                             fontSize: 15,
                             fontWeight: FontWeight.w500),
                       ),
                       ButtonSum(
-                        fun: () {},
+                        fun: () {
+                          setState(() {
+                            itemCount++;
+                          });
+                        },
                         sum: "+",
                         color: Constants.redColor,
                         texColor: Constants.whitecolor,

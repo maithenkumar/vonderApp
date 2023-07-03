@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:order_app/Costants/constants.dart';
 import 'package:order_app/Widgets/apbar.dart';
 
+import '../Widgets/address_details_container.dart';
+import '../Widgets/apply_coupons_container.dart';
+import '../Widgets/instruction_textfield.dart';
 import '../Widgets/items_container.dart';
 import '../Widgets/kitchen_container.dart';
+import '../Widgets/receipt_container.dart';
 
 class NewCart extends StatefulWidget {
   const NewCart({super.key});
@@ -14,6 +18,7 @@ class NewCart extends StatefulWidget {
 
 class _NewCartState extends State<NewCart> {
   DateTime date = DateTime.now();
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +47,9 @@ class _NewCartState extends State<NewCart> {
               ])),
               child: Text(
                 "Whoa. you have a healthy lunch here! (${date})",
+                maxLines: 2,
                 style: const TextStyle(
-                  fontSize: 12,
+                  fontSize: 14,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -62,9 +68,15 @@ class _NewCartState extends State<NewCart> {
                     color: Constants.balckcolor),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: const ItemsContaner(),
+            ListView.builder(
+              itemCount: 3,
+              
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                child: const ItemsContaner(),
+              ),
             ),
             // const  Spacer(),
             const SizedBox(
@@ -72,7 +84,9 @@ class _NewCartState extends State<NewCart> {
             ),
             Padding(
               padding: EdgeInsets.only(
-                  left: MediaQuery.of(context).size.width / 2, bottom: 20),
+                left: MediaQuery.of(context).size.width / 2,
+                bottom: 20,
+              ),
               child: ElevatedButton.icon(
                 onPressed: () {},
                 icon: const Padding(
@@ -88,106 +102,148 @@ class _NewCartState extends State<NewCart> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                     // minimumSize: Size(40, 40)
-                    maximumSize: Size(200, 60)),
+                    maximumSize: Size(200, 100)),
               ),
             ),
-            // ElevatedButton(
-            //   onPressed: () {},
-            //   child: const Row(
-            //     children: [
-            //       Icon(
-            //         Icons.add,
-            //         color: Constants.balckcolor,
-            //       ),
-            //       Text("ADD MORE ITEMS")
-            //     ],
-            //   ),
-            //   style: ElevatedButton.styleFrom(
-            //     maximumSize: Size(100, 30)
-            //   ),
-            // )
+
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, ),
               child: Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Constants.whitecolor),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 10, bottom: 20),
-                      child: Text(
-                        "Special Instructions",
-                        style: TextStyle(
-                            color: Constants.balckcolor,
-                            fontWeight: FontWeight.w700,
-                            fontSize: 15),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: SearchBar(),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: Constants.whitecolor),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    const Padding(
+                      padding: EdgeInsets.only(top: 10, bottom: 20),
+                      child: Text(
+                        "Special Instructions",
+                        style: TextStyle(
+                            color: Constants.balckcolor,
+                            fontWeight: FontWeight.w900,
+                            fontSize: 17),
+                      ),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: InstructionTextFiled(
+                          controller: controller,
+                        )),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: const AddressDetailsContainer(),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 0,left: 10,right: 10,bottom: 1),
+              child: Container(
+                padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
+                decoration: BoxDecoration(
+                    color: Constants.whitecolor,
+                    borderRadius: BorderRadius.circular(15)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Row(
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 10, bottom: 20),
-                          child: Text(
-                            "Delivery Timeslot",
-                            style: const TextStyle(
-                                color: Constants.balckcolor,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 15),
+                        Text(
+                          "Delivery Timeslot",
+                          style: TextStyle(
+                            color: Constants.balckcolor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                         Spacer(),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Edit",
-                            style: const TextStyle(
-                                color: Constants.brown,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        )
+                        Text(
+                          "Lunch",
+                          style: TextStyle(
+                              color: Constants.balckcolor,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 1),
+                        ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        OutlinedButton(
-                          onPressed: () {},
-                          child: Icon(
-                            Icons.location_on_rounded,
-                            color: Constants.brown,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20, bottom: 20),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25),
+                                border: Border.all(color: Constants.greyColor)),
+                            child: Center(
+                              child: Icon(
+                                Icons.sunny,
+                                color: Constants.orangecolor,
+                              ),
+                            ),
                           ),
-                        ),
-                        Text("aksklsamcklamcsklmclcams askmcklsamcklckacck",
-                        
-                        maxLines: 2,)
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text("04:44 PM"),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                        Color.fromRGBO(255, 255, 255, 1),
+                        Color.fromRGBO(255, 243, 234, 1)
+                      ])),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.fire_truck_outlined,
+                              color: Constants.brown,
+                              size: 30,
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 10, left: 10, right: 10,bottom: 20),
+                              child: Text(
+                                "Restarted application in 238ms.Restarted application in 238ms.Restarted ion in 238ms. Restarted application in 238ms. Restarted application in 238ms. THIS IS ANOTHER VAC",
+                                maxLines: 6,
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w400,
+                                    letterSpacing: .2,
+                                    color: Color.fromRGBO(146, 100, 65, 1)),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     )
                   ],
                 ),
               ),
             ),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: ApplyCouponsContainer(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 10,
+              ),
+              child: ReceiptContainer(),
+            )
           ],
         ),
       ),

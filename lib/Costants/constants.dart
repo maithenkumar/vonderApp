@@ -27,4 +27,6 @@ class Constants {
   static const Color light_grey = const Color.fromRGBO(240, 245, 250, 1);
     static const Color greencolor = Color.fromARGB(255, 76, 175, 80);
     static const Color othercolor = Color.fromARGB(255, 10, 190, 151);
+    
+    static const Color veryLightColor =Color.fromARGB(36, 33, 149, 243);
 }
