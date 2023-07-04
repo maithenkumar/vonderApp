@@ -15,7 +15,7 @@ class TrackingDetails extends StatelessWidget {
       padding:  EdgeInsets.only(top: 10, left: 20, right: 20),
       child: Row(
         children: [
-          steper(status: status,),
+          Steper(status: status,),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
