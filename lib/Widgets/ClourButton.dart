@@ -8,7 +8,7 @@ class ClourButton extends StatelessWidget {
      required this.height,
     required this.fun,
     required this.btmnText,
-    required this.textColor, required this.btnColor,
+    required this.textColor, required this.btnColor, this.borderRadius=12,
   });
   final VoidCallback fun;
   final String btmnText;
@@ -16,6 +16,7 @@ class ClourButton extends StatelessWidget {
   var fnSize = 24.0;
   var height = 50.0;
   final Color btnColor;
+  var borderRadius;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class ClourButton extends StatelessWidget {
         onPressed: fun,
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12)
+            borderRadius: BorderRadius.circular(borderRadius==null?12:borderRadius)
           ),
     minimumSize: Size(double.infinity, height),
     backgroundColor: btnColor
@@ -36,6 +37,7 @@ class ClourButton extends StatelessWidget {
           style: TextStyle(
             color: textColor,
             fontSize: fnSize,
+            fontWeight: FontWeight.w400
           ),
         ),
       ),
