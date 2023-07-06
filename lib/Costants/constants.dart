@@ -31,4 +31,6 @@ class Constants {
     static const Color veryLightColor =Color.fromARGB(36, 33, 149, 243);
     
     static const Color blue =Color.fromARGB(255, 33, 150, 243);
+    
+  static const Color simmerWhite = Color.fromRGBO(217, 217, 217, 1);
 }

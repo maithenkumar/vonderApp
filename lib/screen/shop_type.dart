@@ -1,3 +1,4 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:order_app/Costants/constants.dart';
 import 'package:order_app/Widgets/apbar.dart';
@@ -5,7 +6,7 @@ import 'package:order_app/Widgets/apbar.dart';
 import '../ApiServices/api_services.dart';
 import '../Widgets/set_yime.dart';
 import '../Widgets/shop_type_profile.dart';
-import '../Widgets/time_picker_Container.dart';
+import '../main.dart';
 
 class ShopTypeScreen extends StatefulWidget {
   const ShopTypeScreen({super.key});
@@ -24,6 +25,7 @@ class _ShopTypeScreenState extends State<ShopTypeScreen> {
 
   bool comesdata = false;
   List data = [];
+  List timedata=[];
 
   init() async {
     var res = await sendGetData('getAllCategories', {});
@@ -35,7 +37,10 @@ class _ShopTypeScreenState extends State<ShopTypeScreen> {
     }
   }
 
+  DateTime? currentValue;
+
   int timeCount = 1;
+  bool currentStatus = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,44 +57,60 @@ class _ShopTypeScreenState extends State<ShopTypeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             comesdata == true
-                ? SizedBox(
-                    height: 150,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: data[0].length,
-                      itemBuilder: (context, index) => Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: ShopTypeProfile(
-                            imageurl: data[0][index]["image"],
-                            shopName: data[0][index]["name"],
-                          )),
-                    ),
-                  )
-                : CircularProgressIndicator(),
+                ? SizedBox(height: 150, child: Shopprofile())
+                : SizedBox(
+                    height: 30,
+                    child: CircularProgressIndicator(),
+                  ),
             ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: timeCount,
-              itemBuilder: (context, index) => SteTime(),
-            ),
+              itemBuilder: (context, index)=>  SteTime(myFunction:
+                   (context, currentValue) async {  
+          final time = await showTimePicker(
+            context: context,
+            initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+          );
+          timedata.add(time);
+        //   var selectdate = DateTimeField.convert(time);
+        //   date["selected time"] = selectdate;
+        //   allDate.add(date);
+        //   if (kDebugMode) {
+        //     print(date);
+        //   }
+        //   print(allDate);
+          return DateTimeField.convert(time);
+        // },
+
+                   })
+               ,),
+            
             TextButton.icon(
-                onPressed: () {
-                  setState(() {
-                    timeCount++;
-                  });
-                },
-                icon: const Icon(
-                  Icons.add,
+              onPressed: () {
+                setState(() {
+                  timeCount++;
+                });
+              },
+              icon: const Icon(
+                Icons.add,
+                color: Constants.blue,
+              ),
+              label: const Text(
+                "Add time slots",
+                style: TextStyle(
                   color: Constants.blue,
+                  fontSize: 17,
                 ),
-                label: const Text(
-                  "Add time slots",
-                  style: TextStyle(
-                    color: Constants.blue,
-                    fontSize: 17,
-                  ),
-                ))
-          ],
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                print(timedata);
+              },
+              child: Text("Save"),
+            )
+          ]
         ),
       ),
     );

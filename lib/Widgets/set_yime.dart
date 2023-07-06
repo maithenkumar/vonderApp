@@ -8,8 +8,9 @@ import 'time_picker.dart';
 import 'time_picker_Container.dart';
 
 class SteTime extends StatefulWidget {
-  const SteTime({super.key});
+  const SteTime({super.key, required this.myFunction});
 
+   final Function(BuildContext, DateTime?) myFunction;
   @override
   State<SteTime> createState() => _SteTimeState();
 }
@@ -18,16 +19,16 @@ class _SteTimeState extends State<SteTime> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => BasicDateTimeField(),
-      child: const Padding(
-        padding: EdgeInsets.only(top: 40, left: 20, right: 20, ),
+      // onTap: () => BasicDateTimeField(),
+      child:  Padding(
+        padding: const EdgeInsets.only(top: 40, left: 20, right: 20, ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(bottom: 10),
                   child: Text(
                     "Opens at",
@@ -38,10 +39,10 @@ class _SteTimeState extends State<SteTime> {
                     ),
                   ),
                 ),
-                MyWidget()
+                TimePIckerContainer(myFunction:widget.myFunction,)
               ],
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(top: 30),
               child: Text(
                 "to",
@@ -54,7 +55,7 @@ class _SteTimeState extends State<SteTime> {
             ),
             Column(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(bottom: 10),
                   child: Text(
                     "Close at",
@@ -65,7 +66,7 @@ class _SteTimeState extends State<SteTime> {
                     ),
                   ),
                 ),
-                MyWidget()
+                TimePIckerContainer(myFunction: widget.myFunction,)
               ],
             ),
           ],
@@ -75,34 +76,34 @@ class _SteTimeState extends State<SteTime> {
   }
 }
 
-class BasicDateTimeField extends StatelessWidget {
-  final format = DateFormat("yyyy-MM-dd HH:mm");
-  @override
-  Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      Text('Basic date & time field (${format.pattern})'),
-      DateTimeField(
-        format: format,
-        onShowPicker: (context, currentValue) async {
-          return await showDatePicker(
-            context: context,
-            firstDate: DateTime(1900),
-            initialDate: currentValue ?? DateTime.now(),
-            lastDate: DateTime(2100),
-          ).then((DateTime? date) async {
-            if (date != null) {
-              final time = await showTimePicker(
-                context: context,
-                initialTime:
-                    TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
-              );
-              return DateTimeField.combine(date, time);
-            } else {
-              return currentValue;
-            }
-          });
-        },
-      ),
-    ]);
-  }
-}
+// class BasicDateTimeField extends StatelessWidget {
+//   final format = DateFormat("yyyy-MM-dd HH:mm");
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(children: <Widget>[
+//       Text('Basic date & time field (${format.pattern})'),
+//       DateTimeField(
+//         format: format,
+//         onShowPicker: (context, currentValue) async {
+//           return await showDatePicker(
+//             context: context,
+//             firstDate: DateTime(1900),
+//             initialDate: currentValue ?? DateTime.now(),
+//             lastDate: DateTime(2100),
+//           ).then((DateTime? date) async {
+//             if (date != null) {
+//               final time = await showTimePicker(
+//                 context: context,
+//                 initialTime:
+//                     TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+//               );
+//               return DateTimeField.combine(date, time);
+//             } else {
+//               return currentValue;
+//             }
+//           });
+//         },
+//       ),
+//     ]);
+//   }
+// }

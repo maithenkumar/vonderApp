@@ -2,9 +2,18 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:order_app/Costants/constants.dart';
+import 'ApiServices/api_services.dart';
 import 'Widgets/time_picker.dart';
 import 'screen/cash_withdrawal_screen.dart';
 import 'screen/chat_screen.dart';
+import 'screen/disclaimer.dart';
+import 'screen/help_center.dart';
+import 'screen/loding_chat_screen.dart';
+import 'screen/loding_dashboard.dart';
+import 'screen/loding_list_screen.dart';
+import 'screen/loding_order_screen.dart';
+import 'screen/loding_screen.dart';
+import 'screen/loding_upline_downline.dart';
 import 'screen/new_cart_screen.dart';
 import 'screen/payment_details_screen.dart';
 import 'screen/payment_recive_list.dart';
@@ -32,72 +41,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white70),
       ),
-      home: const ShopTypeScreen(),
+      home: LodingDashBoardScreen(),
     );
-  }
-}
-
-class MyWidget extends StatefulWidget {
-  const MyWidget({super.key});
-
-  @override
-  State<MyWidget> createState() => _MyWidgetState();
-}
-
-class _MyWidgetState extends State<MyWidget> {
-  final format = DateFormat("yyyy-MM-dd HH:mm");
-  @override
-  Widget build(BuildContext context) {
-    return  Container(
-
-        alignment: Alignment.center,
-        height: 40,
-        width: 120,
-decoration: BoxDecoration(
-  borderRadius: BorderRadius.circular(5),
-  border: Border.all(
-    color: Constants.greyColor,
-    width: 2
-  )
-),
-        
-        child: DateTimeField(
-          style: const TextStyle(fontSize: 15,
-          color: Constants.balckcolor),
-          
-          decoration: const InputDecoration(
-              suffixIcon: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Icon(Icons.access_time_rounded),
-              ),
-              hintText: "--:-- --",
-              errorBorder: InputBorder.none,
-              border: InputBorder.none,
-              hintStyle: TextStyle(
-                fontSize:20
-              )),
-              
-              textAlign: TextAlign.center,
-          format: format,
-          onShowPicker: (context, currentValue) async {
-            return await showDatePicker(
-              context: context,
-              firstDate: DateTime(1900),
-              initialDate: currentValue ?? DateTime.now(),
-              lastDate: DateTime(2100),
-            ).then((DateTime? date) async {
-              if (date != null) {
-                final time = await showTimePicker(
-                  context: context,
-                  initialTime:
-                      TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
-                );
-                return DateTimeField.combine(date, time);
-              } else {
-                return currentValue;
-              }
-            });
-          },
-        ));
   }
 }

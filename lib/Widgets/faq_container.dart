@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:order_app/Costants/constants.dart';
 
 class FAQcontainer extends StatefulWidget {
@@ -36,7 +37,7 @@ class _FAQcontainerState extends State<FAQcontainer>
     } else {
       _controller.animateBack(
         0,
-        duration:const  Duration(
+        duration: const Duration(
           milliseconds: 500,
         ),
       );
@@ -60,13 +61,17 @@ class _FAQcontainerState extends State<FAQcontainer>
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
-                  child: Text(
-                    widget.headText,
-                    maxLines: 2,
-                    style: TextStyle(
-                        color: Constants.balckcolor,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700),
+                  child: 
+                  
+                  Expanded(
+                    child: Text(
+                      widget.headText,
+                      maxLines: 3,
+                      style: TextStyle(
+                          color: Constants.balckcolor,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700),
+                    ),
                   ),
                 ),
                 Spacer(),
@@ -96,7 +101,13 @@ class _FAQcontainerState extends State<FAQcontainer>
             SizeTransition(
               sizeFactor: _animation,
               axis: Axis.vertical,
-              child: Text(widget.subText),
+              child: Text(
+                widget.subText,
+                style: TextStyle(
+                  color: Constants.greyColor,
+                  fontSize: 10,
+                ),
+              ),
             ),
             Visibility(
               visible: istab,
@@ -105,7 +116,7 @@ class _FAQcontainerState extends State<FAQcontainer>
                 thickness: 0.5,
               ),
             ),
-            Visibility(visible: istab, child: Text(widget.subText))
+           
           ],
         ),
       ),
