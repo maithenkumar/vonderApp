@@ -10,6 +10,8 @@ import 'screen/disclaimer.dart';
 import 'screen/help_center.dart';
 import 'screen/loding_chat_screen.dart';
 import 'screen/loding_dashboard.dart';
+import 'screen/loding_delivery_address_screen.dart';
+import 'screen/loding_how_its_work_screen.dart';
 import 'screen/loding_list_screen.dart';
 import 'screen/loding_order_screen.dart';
 import 'screen/loding_screen.dart';
@@ -41,7 +43,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white70),
       ),
-      home: LodingDashBoardScreen(),
+      home: LodingHowItsWorksScreen(),
     );
   }
 }
