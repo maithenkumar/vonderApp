@@ -21,7 +21,11 @@ class _HelperCenterPageState extends State<HelperCenterPage>
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
   }
-
+@override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,8 +61,8 @@ class _HelperCenterPageState extends State<HelperCenterPage>
               controller: _tabController,
               children: [
                 FAQscreen(),
-                ContactScreen(
-                  headText: '',
+                const ContactScreen(
+               
                 )
               ],
             ),

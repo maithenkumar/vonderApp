@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
 
-class ItemText extends StatefulWidget {
-  const ItemText({super.key, required this.itemCount});
+class ItemText extends StatelessWidget {
+  const ItemText({super.key, required this.itemCount, required this.fun});
   final int itemCount;
-
-  @override
-  State<ItemText> createState() => _ItemTextState();
-}
-
-class _ItemTextState extends State<ItemText> {
+final VoidCallback fun;
   @override
   Widget build(BuildContext context) {
-    return Text(
-                            "${widget.itemCount}",
-                            style: const TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold),
-                          );
-                         
+    return
+        // Container(
+        //   width: 20,
+        //   height: 10,
+        //   child: const TextField(
+        //     style: TextStyle(
+        //       fontSize: 15,
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //     decoration: InputDecoration(
+        //       border: InputBorder.none,
+        //     ),
+        //   ),
+        // );
+
+        GestureDetector
+        (
+          onTap: fun,
+          child: Text(
+              "$itemCount",
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+        );
   }
 }

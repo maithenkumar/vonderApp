@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:order_app/Costants/constants.dart';
-import 'package:shimmer/shimmer.dart';
-
 import '../Widgets/loding_container.dart';
 
 // https://pub.dev/packages/shimmer
@@ -17,69 +14,122 @@ class _LodingScreenState extends State<LodingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 100,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                itemBuilder: (context, index) => SimmerContainer(
-                  height: 100,
-                  width: 200,
-                  radius: 10,
-                ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // SizedBox(
+              //   height: 100,
+              //   child: ListView.builder(
+              //     scrollDirection: Axis.horizontal,
+              //     itemCount: 3,
+              //     itemBuilder: (context, index) =>
+              //   ),
+              // ),
+               SimmerContainer(
+                    height: 100,
+                    width: double.infinity,
+                    radius: 0,
+                  ),
+                  SizedBox(height: 10,),
+              SimmerContainer(height: 20, width: MediaQuery.of(context).size.width/2.4, radius: 0),
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: SimmerContainer(height: 10, width: MediaQuery.of(context).size.width/4, radius: 0,margin: 0),
               ),
-            ),
-            SimmerContainer(height: 50, width: double.infinity, radius: 10),
-            SizedBox(
-              height: 200,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 7,
-                itemBuilder: (context, index) => SimmerContainer(
-                  height: 400,
-                  width: 100,
-                  radius: 10,
-                ),
+        
+             SizedBox(height: 10,),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SimmerContainer(
+                    height: 110,
+                    width: 92,
+                    radius: 0,
+        
+                  ),
+                  SizedBox(width: 10,),
+                  SimmerContainer(
+                    height: 110,
+                    width: 92,
+                    radius: 0,
+        
+                  ),                  SizedBox(width: 10,),
+
+                  SimmerContainer(
+                    height: 110,
+                    width: 92,
+                    radius: 0,
+        
+                  ),
+                ],
               ),
-            ),
-            SimmerContainer(
-              height: 100,
-              width: 350,
-              radius: 10,
-            ),
-            SizedBox(
-              height: 100,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                itemBuilder: (context, index) => SimmerContainer(
-                  height: 100,
-                  width: 200,
-                  radius: 10,
-                ),
+              SimmerContainer(
+                height: 100,
+                width: double.infinity,
+                radius: 0,
+              ),   
+              const SizedBox(height: 10,),
+              SimmerContainer(height: 20, width: MediaQuery.of(context).size.width/2.4, radius: 0),
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: SimmerContainer(height: 10, width: MediaQuery.of(context).size.width/4, radius: 0,margin: 0),
+              ),   Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SimmerContainer(
+                    height: 110,
+                    width: 92,
+                    radius: 0,
+        
+                  ),
+                  SizedBox(width: 10,),
+                  SimmerContainer(
+                    height: 110,
+                    width: 92,
+                    radius: 0,
+        
+                  ),                  SizedBox(width: 10,),
+
+                  SimmerContainer(
+                    height: 110,
+                    width: 92,
+                    radius: 0,
+        
+                  ),
+                ],
+              ), Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SimmerContainer(
+                    height: 110,
+                    width: 92,
+                    radius: 0,
+        
+                  ),
+                  SizedBox(width: 10,),
+                  SimmerContainer(
+                    height: 110,
+                    width: 92,
+                    radius: 0,
+        
+                  ),                  SizedBox(width: 10,),
+
+                  SimmerContainer(
+                    height: 110,
+                    width: 92,
+                    radius: 0,
+        
+                  ),
+                ],
               ),
-            ),
-            SimmerContainer(
-              height: 50,
-              width: double.infinity,
-              radius: 10,
-            ),
-            SizedBox(
-              height: 100,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                itemBuilder: (context, index) => SimmerContainer(
-                  height: 100,
-                  width: 200,
-                  radius: 10,
-                ),
-              ),
-            ),
-          ],
+              
+            ],
+          ),
         ),
       ),
     );

@@ -44,6 +44,8 @@ dependencies:
   flutter_datetime_picker: ^1.5.1
   datetime_picker_formfield: ^2.0.1
   shimmer: ^3.0.0
+  url_launcher: ^6.1.11
+  material_design_icons_flutter: ^7.0.7296
 
   
 

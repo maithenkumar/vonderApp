@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'screen/help_center.dart';
+import 'package:order_app/screen/loding_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,15 +13,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final Uri _url = Uri.parse('https://flutter.dev');
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Order App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white70),
-      ),
-      home: HelperCenterPage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Order App',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white70),
+        ),
+        home: LodingScreen());
   }
 }
+
+

@@ -3,35 +3,52 @@ import 'package:flutter/material.dart';
 import '../Costants/constants.dart';
 
 class ButtonSum extends StatelessWidget {
-  ButtonSum({
-    super.key,
-    required this.fun,
-    required this.sum,
-    required this.color,
-    
-     this.texColor = Constants.balckcolor
-  });
+  ButtonSum(
+      {super.key,
+      required this.fun,
+      required this.sum,
+      required this.color,
+      this.texColor = Constants.balckcolor});
   final VoidCallback fun;
   final String sum;
   final Color color;
-  Color texColor; 
+  Color texColor;
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          minimumSize: Size(30, 30),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30)),
+    return GestureDetector(
+onTap: fun,
+      child: Container(
+        // padding: EdgeInsets.all(10),
+    
+        height: 35,
+        width: 35,
+        decoration: BoxDecoration(
+        color: color,
+          borderRadius: BorderRadius.circular(5)
         ),
-        onPressed: fun,
         child: Center(
           child: Text(
             sum,
-            style: TextStyle(color: texColor, fontSize: 20),
+            style: TextStyle(color: texColor, fontSize: 24),
           ),
-        ));
+        ),
+    
+        // ElevatedButton(
+        //   style: ElevatedButton.styleFrom(
+        //     backgroundColor: color,
+        //     minimumSize: Size(30, 30),
+        //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        //   ),
+        //   onPressed: fun,
+        //   child: Center(
+        //     child: Text(
+        //       sum,
+        //       style: TextStyle(color: texColor, fontSize: 20),
+        //     ),
+        //   ),
+      ),
+    );
   }
 }
 
